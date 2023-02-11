@@ -1,3 +1,6 @@
+// Module 1 - Week3
+// Todo List Assignment
+
 // Arrays to keep track of each task's state
 const taskTitles = [];
 const taskComplete = [];
