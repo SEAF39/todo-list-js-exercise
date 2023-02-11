@@ -10,22 +10,38 @@ function newTask(title) {
 }
 
 // Mark a task as complete by setting the task's status in the `taskComplete` array to `true`
-function completeTask(taskIndex) {
-  taskComplete[taskIndex] = true;
-}
-
-// Print the state of a task to the console in a nice readable way
-function logTaskState(taskIndex) {
-  const title = taskTitles[taskIndex];
-  const complete = taskComplete[taskIndex];
-  console.log(`${title} has${complete ? " " : " not "}been completed`);
+// Define the constructor function for a task object
+function newTask(title, description) {
+  // Create an object to represent the task
+  const task = {
+    // Store the task's title and description
+    title: title,
+    description: description,
+    // Store whether the task has been completed or not
+    complete: false,
+    // Define a method to log the task's state
+    logState: function() {
+      console.log(`${this.title} has${this.complete ? " " : " not "}been completed`);
+    },
+    // Define a method to mark the task as completed
+    markCompleted: function() {
+      this.complete = true;
+    }
+  };
+  // Return the task object
+  return task;
 }
 
 // DRIVER CODE BELOW
 
-newTask("Clean Cat Litter"); // task 0
-newTask("Do Laundry"); // task 1
+const task1 = newTask("Clean Cat Litter", "Take all the 💩 out of the litter box");
+const task2 = newTask("Do Laundry", "😨");
+// Store the two tasks in an array
+const tasks = [task1, task2];
 
-logTaskState(0); // Clean Cat Litter has not been completed
-completeTask(0);
-logTaskState(0); // Clean Cat Litter has been completed
+// Log the state of task1 before marking it as completed
+task1.logState(); // Output: Clean Cat Litter has not been completed
+// Mark task1 as completed
+task1.markCompleted();
+// Log the state of task1 again
+task1.logState(); // Output: Clean Cat Litter has been completed
